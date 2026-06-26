@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: theme('fontFamily.sans');
+  background-color: #f1f5f9;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent text size adjust on rotation etc. */
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Mobile-friendly tap targets, no blue tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+[role='button'] {
+  touch-action: manipulation;
+}
+
+/* Thin, subtle scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.35);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@layer components {
+  /* A "card" surface used across screens */
+  .card {
+    @apply rounded-2xl bg-white p-4 shadow-card border border-slate-100;
+  }
+  .card-compact {
+    @apply rounded-xl bg-white p-3 shadow-card border border-slate-100;
+  }
+
+  /* Pill button */
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium;
+  }
+
+  /* Primary action button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-glow transition active:scale-[0.98] disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-3 text-sm font-semibold text-slate-700 transition active:scale-[0.98];
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-rose-50 px-4 py-3 text-sm font-semibold text-rose-600 transition active:scale-[0.98];
+  }
+
+  /* Section heading */
+  .section-title {
+    @apply text-xs font-semibold uppercase tracking-wider text-slate-400;
+  }
+}
+
+/* Safe-area helpers for phones with notches / home indicators */
+.safe-top {
+  padding-top: max(0.75rem, env(safe-area-inset-top));
+}
+.safe-bottom {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
